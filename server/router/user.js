@@ -25,7 +25,7 @@ router.post("/admin/login", loginAdmin);
 // Protected routes----------------------------
 
 //create post
-router.post("/:id/posts", authentication, createPost);
+router.post("/posts", authentication, createPost);
 
 //get post
 router.get("/posts/:postId", authentication, getPost);
@@ -33,7 +33,7 @@ router.get("/posts/:postId", authentication, getPost);
 //patch post
 router.patch("/posts/:postId", authentication, editPost);
 
-// Admin dashboard (only accessible by authenticated admin users)
+// Admin dashboard
 router.get("/admin/dashboard", authentication, isAdmin, (req, res) => {
   res.status(200).json({ message: `Welcome, Admin User: ${req.user.email}` });
 });

@@ -3,7 +3,7 @@ const User = require("../model/user");
 
 const findUserById = async (userId) => User.findById(userId);
 
-const createPostResponse = (post, username) => ({
+const postResponse = (post, username) => ({
   _id: post._id,
   title: post.title,
   content: post.content,
@@ -26,9 +26,7 @@ const createPost = async (req, res) => {
       content,
     }).save();
 
-    res
-      .status(201)
-      .json({ post: createPostResponse(savedPost, user.username) });
+    res.status(201).json({ post: postResponse(savedPost, user.username) });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -73,12 +71,10 @@ const editPost = async (req, res) => {
       if (title) post.title = title;
       if (content) post.content = content;
       const updatedPost = await post.save();
-      return res
-        .status(200)
-        .json({
-          message: "Post updated successfully",
-          post: createPostResponse(updatedPost, req.user.username),
-        });
+      return res.status(200).json({
+        message: "Post updated successfully",
+        post: postResponse(updatedPost, req.user.username),
+      });
     }
 
     res.status(400).json({ message: "No fields to update" });
