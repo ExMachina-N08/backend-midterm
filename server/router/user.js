@@ -3,7 +3,7 @@ const { createUser, loginUser } = require("../controllers/user");
 const authentication = require("../middleware/authentication");
 const isAdmin = require("../middleware/isAdmin");
 const { createAdmin, loginAdmin } = require("../controllers/admin");
-const { createPost, getPost } = require("../controllers/postLogic");
+const { createPost, getPost, editPost } = require("../controllers/postLogic");
 
 const router = express.Router();
 
@@ -25,10 +25,13 @@ router.post("/admin/login", loginAdmin);
 // Protected routes----------------------------
 
 //create post
-router.post("/:id/post", authentication, createPost);
+router.post("/:id/posts", authentication, createPost);
 
 //get post
-router.get("/:id/post/:postId", authentication, getPost);
+router.get("/posts/:postId", authentication, getPost);
+
+//patch post
+router.patch("/posts/:postId", authentication, editPost);
 
 // Admin dashboard (only accessible by authenticated admin users)
 router.get("/admin/dashboard", authentication, isAdmin, (req, res) => {
