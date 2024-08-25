@@ -1,9 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const createError = require("http-errors"); // Import http-errors package
+const createError = require("http-errors");
 const router = require("./router/user");
 
 //app config
@@ -12,7 +12,7 @@ const app = express();
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDB connec ted"))
+  .then(() => console.log("MongoDB connected"))
   .catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
