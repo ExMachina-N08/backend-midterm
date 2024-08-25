@@ -3,7 +3,7 @@ const { createUser, loginUser } = require("../controllers/user");
 const authentication = require("../middleware/authentication");
 const isAdmin = require("../middleware/isAdmin");
 const { createAdmin, loginAdmin } = require("../controllers/admin");
-const { createPost, getPost, editPost } = require("../controllers/postLogic");
+const { createPost, getPost, editPost } = require("../controllers/post");
 
 const router = express.Router();
 
